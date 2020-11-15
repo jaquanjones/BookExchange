@@ -101,7 +101,8 @@ html, body {
 
 }
 
-.custom-button {
-    background-color: #008891;
-    color: #FFFFFF;
+.btn-inverse:hover{
+    background-color: #292b2c;
+    color: white;
 }
+

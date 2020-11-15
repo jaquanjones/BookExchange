@@ -8,10 +8,12 @@ from django.http import HttpResponseRedirect
 
 from .models import Book
 
+from .filters import BookFilter
+
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 
@@ -58,13 +60,28 @@ def postbook(request):
 @login_required(login_url=reverse_lazy('login'))
 def displaybooks(request):
     books = Book.objects.all()
+
+    #data gets rendered and filters it down if there are any filters applied
+    myFilter = BookFilter(request.GET, queryset=books)
+    #rebuilds the result from the filter
+    books = myFilter.qs
+
+    # pagination for display books, change number of second parameter to get a customized number of books per page
+    paginator = Paginator(books, 6)
+
+    # will grab the current page from the url
+    page = request.GET.get('page')
+
+    books = paginator.get_page(page)
+
     for b in books:
         b.pic_path = b.picture.url[14:]
     return render(request,
                   'bookMng/displaybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      'books': books
+                      'books': books,
+                      'myFilter': myFilter
                   })
 
 
@@ -83,8 +100,17 @@ def book_detail(request, book_id):
 @login_required(login_url=reverse_lazy('login'))
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
+    # pagination for display books, change number of second parameter to get a customized number of books per page
+    paginator = Paginator(books, 6)
+
+    # will grab the current page from the url
+    page = request.GET.get('page')
+
+    books = paginator.get_page(page)
+
     for b in books:
         b.pic_path = b.picture.url[14:]
+
     return render(request,
                   'bookMng/mybooks.html',
                   {
