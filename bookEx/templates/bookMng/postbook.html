@@ -21,26 +21,40 @@
                     class="display-4 mx-auto my-auto px-3 py-2"> Post Book </h1>
             </div>
         </div>
-        <div class="container my-auto py-4" align="center">
+        <div class="container my-auto py-4">
             {% if submitted %}
-                <p>
-                    Post Successfully!
-                </p>
+                <div class="alert alert-success" role="alert">
+                    Post Successful!
+                </div>
             {% else %}
-                <form action="" enctype="multipart/form-data" method="post" novalidate>
-                    <div class="form-group ">
-                        <table class="table table-dark">
-
-                            {{ form.as_table }}
-                            <tr>
-                                <td scope="col" >
-                                    <input class="btn btn-lg btn-secondary" type="submit" value="Submit">
-                                </td>
-                            </tr>
-                        </table>
+                <div class="container ">
+                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                        <div class="form-group">
+                            <label class="lead">Name: </label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label class="lead">URL: </label>
+                            {{ form.web }}
+                        </div>
+                        <div class="form-group">
+                            <label class="lead">Price: </label>
+                            {{ form.price }}
+                        </div>
+                        <div class="mt-4">
+                        <div class="custom-file">
+                            <label class="lead custom-file-label" for="image-upload">Select an image.. </label>
+                            {{ form.picture }}
+                            {#                        <input type="file" class="form-control-file" id="image-upload">#}
+                        </div>
+                        </div>
+                        {#                        {{ form.as_table }}#}
+                        <div class="container" align="right" >
+                        <input class="btn btn-lg btn-secondary my-4" style="background-color: #008891; color: #FFFFFF;" type="submit" value="Submit">
+                            </div>
                         {% csrf_token %}
-                    </div>
-                </form>
+                    </form>
+                </div>
             {% endif %}
         </div>
     </div>
