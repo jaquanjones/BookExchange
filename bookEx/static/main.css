@@ -11,25 +11,25 @@
     margin-left: auto;
     margin-right: auto;
     background-color: #FFFFFF;
-    width: 800px;
+    /*width: 800px;*/
 }
 
 body {
     background-color: #e7e7de;
     font-family: 'Montserrat', sans-serif;
     /*font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-    font-size: 0.9em;
+    font-size: 1.0em;
     text-align: justify;
     color: #474747;
 }
 
 #footer {
     text-align: center;
-    font-size: 0.8em;
-    margin-top: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #00587a;
+    font-size: 0.9em;
+    /*margin-top: 5px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+    background-color: #0f3057;
     border-top: thin solid #BBBBBB;
     clear: both;
     color: #FFF;
@@ -38,7 +38,7 @@ body {
 #nav li {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 1.25em;
+    font-size: 1.5em;
     list-style-type: none;
     border-bottom: thin solid #008891;
     color: #4C4C4C;
@@ -65,7 +65,7 @@ body {
     padding-left: 20px;
 }
 
-#top-menu{
+#top-menu {
     padding-top: 10px;
     padding-right: 10px;
     color: #008891;
@@ -74,6 +74,34 @@ body {
 a {
     color: #0f3057;
 }
+
 #top-menu a {
     color: #e7e7de;
+}
+
+html, body {
+    height: 100%;
+}
+
+.info-box {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #008891;
+    /*width: 800px;*/
+}
+
+#info-section {
+    margin: auto;
+    padding: 100px;
+}
+
+#my-books-table {
+    background-color: #FFF;
+
+}
+
+.custom-button {
+    background-color: #008891;
+    color: #FFFFFF;
 }

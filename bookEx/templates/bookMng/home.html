@@ -5,14 +5,65 @@
     Home
 {% endblock title %}
 
-{% block sidenav %}
-    {% for item in item_list %}
-        <li>
-            <a href="{{ item.link }}"> {{ item.item }} </a>
-        </li>
-    {% endfor %}
-{% endblock sidenav %}
+{#{% block sidenav %}#}
+{#    {% for item in item_list %}#}
+{#        <li>#}
+{#            <a href="{{ item.link }}"> {{ item.item }} </a>#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#{% endblock sidenav %}#}
 
 {% block content %}
-    <h1 align="center">Welcome to Book Exchange System</h1>
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container my-3">
+                <h1 class="display-4" align="center">Welcome to Book Exchange System!</h1>
+                <p align="center">Our online book marketplace allows users to buy, sell, and browse books from all over the world.
+                    You'll be sure to find an interesting and/or rare books right from the collection of our users. Or
+                    even add one yourself. Enjoy your book search!</p>
+                <div align="center"><p><a class="btn btn-lg" href="#" role="button" style="background-color: #008891; color: #FFFFFF;">Find
+                    out more &raquo;</a></p></div>
+            </div>
+        </div>
+
+        <div class="container-fluid mb-auto">
+            <div class="card-deck mt-auto mb-5 mx-auto py-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'browse.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title">Browse</h3>
+                        <p class="card-text">Search the collection of books created by our users. Discover something new
+                            or find that rare book you have been searching for.</p>
+                        <a href="{% url 'displaybooks' %}" class="btn"
+                           style="background-color: #008891; color: #FFFFFF;">Browse Books</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'buy.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title">Buy</h3>
+                        <p class="card-text">Buy and negotiate book prices asked for buy the seller. Arrange pickup with
+                            the seller if nearby, or shipping if not.</p>
+                        <a href="{% url 'displaybooks' %}" class="btn btn-primary"
+                           style="background-color: #008891; color: #FFFFFF;">Buy Book</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'sell.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title">Sell</h3>
+                        <p class="card-text">Book collection beginning to take up space? Rare book collector? Sell books
+                            right from your collection at the price you find fair.</p>
+                        <a href="{% url 'postbook' %}" class="btn btn-primary"
+                           style="background-color: #008891; color: #FFFFFF;">Sell Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    {#    <h1 align="center">Welcome to Book Exchange System</h1>#}
 {% endblock content %}

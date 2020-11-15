@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +17,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="{% static 'main.css' %}" rel="stylesheet" title="text/css">
 </head>
+
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #0f3057;">
+{#START OF NAVBAR#}
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top align-baseline" style="background-color: #0f3057;">
+{#    LOGO#}
         <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'logo-resized.png' %}" width="150"
                                                               height="75" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -28,7 +32,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' %}"><h6>Home</h6> <span
+                    <a class="nav-link" href="{% url 'index' %}">Home <span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,9 +48,9 @@
 
                 <li class="nav-item">
                     {% if user.is_authenticated %}
-                        <a class="nav-link" href="{% url 'logout' %}?next=/"><h6>Logout</h6></a>
+                        <a class="nav-link" href="{% url 'logout' %}?next=/">Logout</a>
                     {% else %}
-                        <a class="nav-link" href="{% url 'login' %}?next=/"><h6>Login</h6></a>
+                        <a class="nav-link" href="{% url 'login' %}?next=/">Login</a>
                     {% endif %}
                 </li>
             </ul>
@@ -68,42 +72,47 @@
 </header>
 
 
-<div id="wrapper">
-    <header id="header">
-        {#        <div id="logo">#}
-        {#            <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
-        {#            <span id="top-menu" style="float: right;">#}
-        {#                {% if user.is_authenticated %}#}
-        {#                    {{ user.username }}#}
-        {#                    <a href="{% url 'logout' %}?next=/"> Logout </a>#}
-        {#                {% else %}#}
-        {#                    Login#}
-        {#                    <a href="{% url 'login' %}?next=/"> Login </a>#}
-        {#                {% endif %}#}
-        {#            </span>#}
-        {#        </div>#}
-        <div id="topbanner">
-            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>
-        </div>
-    </header>
-    <aside id="leftsidebar">
-        <nav id="nav">
-            <ul>
-                {% block sidenav %}
-                    <li>Menu 1</li>
-                    <li>Menu 2</li>
-                    <li>Menu 3</li>
-                {% endblock sidenav %}
-            </ul>
-        </nav>
-    </aside>
-    <section id="main">
+<div id="">
+{#    <header id="header">#}
+{#                <div id="logo">#}
+{#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
+{#                    <span id="top-menu" style="float: right;">#}
+{#                        {% if user.is_authenticated %}#}
+{#                            {{ user.username }}#}
+{#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
+{#                        {% else %}#}
+{#                            Login#}
+{#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
+{#                        {% endif %}#}
+{#                    </span>#}
+{#                </div>#}
+{#        <div id="topbanner">#}
+{#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
+{#        </div>#}
+{#    </header>#}
+<section id="">
         {% block content %}
             Hello
         {% endblock content %}
     </section>
-    <footer id="footer"> CS3337 Django Web System</footer>
+{#    <aside id="leftsidebar">#}
+{#        <nav id="nav">#}
+{#            <ul>#}
+{#                {% block sidenav %}#}
+{#                    <li>Menu 1</li>#}
+{#                    <li>Menu 2</li>#}
+{#                    <li>Menu 3</li>#}
+{#                {% endblock sidenav %}#}
+{#            </ul>#}
+{#        </nav>#}
+{#    </aside>#}
+
+
+{#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
 </div>
+<footer class="container-fluid fixed-bottom my-auto py-auto align-text-bottom align-bottom" id="footer">
+  <p>&copy; CS3337 Django Web System</p>
+</footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

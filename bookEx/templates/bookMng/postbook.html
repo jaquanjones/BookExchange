@@ -5,31 +5,44 @@
     Post Book
 {% endblock title %}
 
-{% block sidenav %}
-    {% for item in item_list %}
-        <li>
-            <a href="{{ item.link }}"> {{ item.item }} </a>
-        </li>
-    {% endfor %}
-{% endblock sidenav %}
+{#{% block sidenav %}#}
+{#    {% for item in item_list %}#}
+{#        <li>#}
+{#            <a href="{{ item.link }}"> {{ item.item }} </a>#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#{% endblock sidenav %}#}
 
 {% block content %}
-    <h1> Post Book </h1>
-    {% if submitted %}
-        <p>
-            Post Successfully!
-        </p>
-    {% else %}
-        <form action="" enctype="multipart/form-data" method="post" novalidate>
-            <table>
-                {{ form.as_table }}
-                <tr>
-                    <td colspan="2">
-                        <input class="btn btn-secondary" type="submit" value="Submit">
-                    </td>
-                </tr>
-            </table>
-        {% csrf_token %}
-        </form>
-    {% endif %}
+    <div class="container">
+        <div class="container " align="center">
+            <div class="badge badge-pill badge-dark  mt-4">
+                <h1 align="center"
+                    class="display-4 mx-auto my-auto px-3 py-2"> Post Book </h1>
+            </div>
+        </div>
+        <div class="container my-auto py-4" align="center">
+            {% if submitted %}
+                <p>
+                    Post Successfully!
+                </p>
+            {% else %}
+                <form action="" enctype="multipart/form-data" method="post" novalidate>
+                    <div class="form-group ">
+                        <table class="table table-dark">
+
+                            {{ form.as_table }}
+                            <tr>
+                                <td scope="col" >
+                                    <input class="btn btn-lg btn-secondary" type="submit" value="Submit">
+                                </td>
+                            </tr>
+                        </table>
+                        {% csrf_token %}
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock content %}
