@@ -67,7 +67,7 @@ def displaybooks(request):
     books = myFilter.qs
 
     # pagination for display books, change number of second parameter to get a customized number of books per page
-    paginator = Paginator(books, 1)
+    paginator = Paginator(books, 6)
 
     # will grab the current page from the url
     page = request.GET.get('page')
