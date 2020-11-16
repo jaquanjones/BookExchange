@@ -8,4 +8,5 @@ urlpatterns = [
     path('postbook', views.postbook, name='postbook'),
     path('displaybooks', views.displaybooks, name='displaybooks'),
     path('mybooks', views.mybooks, name='mybooks'),
+    path('search/', SearchResultsView.as_view(), name='search_results')
 ]

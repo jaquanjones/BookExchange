@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView
 
 from .models import MainMenu
 
@@ -112,3 +113,7 @@ class Register(CreateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+
+class SearchResultsView(ListView):
+    model = Book
+    template_name = 'search_results.html'
