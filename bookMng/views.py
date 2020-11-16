@@ -1,6 +1,6 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView
 
 from .models import MainMenu
 
@@ -114,6 +114,21 @@ class Register(CreateView):
         form.save()
         return HttpResponseRedirect(self.success_url)
 
-class SearchResultsView(ListView):
-    model = Book
-    template_name = 'search_results.html'
+
+@login_required(login_url=reverse_lazy('login'))
+def search_results(request):
+    query = request.GET.get('q')
+    if query:
+        results = Book.objects.filter(
+            name__icontains=query
+        )
+        for b in results:
+            b.pic_path = b.picture.url[14:]
+    else:
+        results = None
+    return render(request,
+                  'bookMng/search_results.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'results': results,
+                  })

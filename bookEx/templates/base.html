@@ -20,9 +20,9 @@
 
 <body>
 <header>
-{#START OF NAVBAR#}
+    {#START OF NAVBAR#}
     <nav class="navbar navbar-expand-md navbar-dark sticky-top align-baseline" style="background-color: #0f3057;">
-{#    LOGO#}
+        {#    LOGO#}
         <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'logo-resized.png' %}" width="150"
                                                               height="75" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -55,9 +55,10 @@
                 </li>
             </ul>
 
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form action="{% url 'search_results' %}" method="get" class="form-inline mt-2 mt-md-0">
+                <input name="q" type="text" class="form-control mr-sm-2" placeholder="Search a book.."
+                       aria-label="Search">
+                <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">
             </form>
 
 
@@ -73,45 +74,45 @@
 
 
 <div id="">
-{#    <header id="header">#}
-{#                <div id="logo">#}
-{#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
-{#                    <span id="top-menu" style="float: right;">#}
-{#                        {% if user.is_authenticated %}#}
-{#                            {{ user.username }}#}
-{#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
-{#                        {% else %}#}
-{#                            Login#}
-{#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
-{#                        {% endif %}#}
-{#                    </span>#}
-{#                </div>#}
-{#        <div id="topbanner">#}
-{#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
-{#        </div>#}
-{#    </header>#}
-<section id="">
+    {#    <header id="header">#}
+    {#                <div id="logo">#}
+    {#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
+    {#                    <span id="top-menu" style="float: right;">#}
+    {#                        {% if user.is_authenticated %}#}
+    {#                            {{ user.username }}#}
+    {#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
+    {#                        {% else %}#}
+    {#                            Login#}
+    {#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
+    {#                        {% endif %}#}
+    {#                    </span>#}
+    {#                </div>#}
+    {#        <div id="topbanner">#}
+    {#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
+    {#        </div>#}
+    {#    </header>#}
+    <section id="">
         {% block content %}
             Hello
         {% endblock content %}
     </section>
-{#    <aside id="leftsidebar">#}
-{#        <nav id="nav">#}
-{#            <ul>#}
-{#                {% block sidenav %}#}
-{#                    <li>Menu 1</li>#}
-{#                    <li>Menu 2</li>#}
-{#                    <li>Menu 3</li>#}
-{#                {% endblock sidenav %}#}
-{#            </ul>#}
-{#        </nav>#}
-{#    </aside>#}
+    {#    <aside id="leftsidebar">#}
+    {#        <nav id="nav">#}
+    {#            <ul>#}
+    {#                {% block sidenav %}#}
+    {#                    <li>Menu 1</li>#}
+    {#                    <li>Menu 2</li>#}
+    {#                    <li>Menu 3</li>#}
+    {#                {% endblock sidenav %}#}
+    {#            </ul>#}
+    {#        </nav>#}
+    {#    </aside>#}
 
 
-{#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
+    {#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
 </div>
 <footer class="container-fluid fixed-bottom my-auto py-auto align-text-bottom align-bottom" id="footer">
-  <p>&copy; CS3337 Django Web System</p>
+    <p>&copy; CS3337 Django Web System</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
