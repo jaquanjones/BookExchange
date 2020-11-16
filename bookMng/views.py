@@ -14,7 +14,7 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth.decorators import login_required
 
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .filters import BookFilter
 
 # Create your views here.
@@ -67,7 +67,7 @@ def displaybooks(request):
     books = myFilter.qs
 
     # pagination for display books, change number of second parameter to get a customized number of books per page
-    paginator = Paginator(books, 2)
+    paginator = Paginator(books, 1)
 
     # will grab the current page from the url
     page = request.GET.get('page')
@@ -76,12 +76,20 @@ def displaybooks(request):
 
     for b in books:
         b.pic_path = b.picture.url[14:]
+
+    try:
+        response = paginator.page('page')
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
     return render(request,
                   'bookMng/displaybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
                       'books': books,
-                      'myFilter': myFilter
+                      'myFilter': myFilter,
+                      'response':response
                   })
 
 
