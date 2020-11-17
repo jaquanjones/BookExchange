@@ -1,0 +1,14 @@
+<form >
+  <div class="form-inline align-items-center ">
+      {% for field in myFilter.form %}
+            <div class=" col-sm-2 col-md-2">
+                {{field.label}}
+                {{field}}
+            </div>
+
+      {% endfor %}
+      <div class=" col-sm-2 col-md-2">
+        <button class="btn btn-dark" type="submit">Search</button>
+      </div>
+  </div>
+</form>

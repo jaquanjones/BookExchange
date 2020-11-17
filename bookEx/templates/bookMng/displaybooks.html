@@ -23,12 +23,7 @@
                 Books </h1></div>
         </div>
 
-        <form  class="mt-3" method="get">
-            <div class="form=group">
-                {{myFilter.form}}
-                <button class="btn btn-dark" type="submit"> Search</button>
-            </div>
-        </form>
+        {%include 'partials/_filterbooks.html'%}
 
 
         <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
@@ -60,23 +55,8 @@
                 </tr>
             {% endfor %}
         </table>
+        {% include 'partials/_pagination.html' %}
 
-         <div  class = "pagination justify-content-center" align="center">
-            <div class ="row">
-                {% for num in books.paginator.page_range %}
-                    {%if books.number == num %}
-                        <div class ="col-2">
-                            <button class ="pgn-btn btn btn-dark mx-auto">{{num}}</button>
-                        </div>
-
-                    {% elif num > books.number|add:'-3' and num < books.number|add:'3' %}
-                    <div class ="pgn-btn col-2 page-btn ">
-                         <a class ="btn btn-inverse" href="?{{request.GET.urlencode}}&page={{num}}">{{num}}</a>
-                    </div>
-
-                    {% endif %}
-                {% endfor %}
-            </div>
     </div>
 </div>
 
