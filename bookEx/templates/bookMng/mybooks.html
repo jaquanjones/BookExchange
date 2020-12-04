@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load filter_tag %}
 
 {% block title %}
     My Books
@@ -68,5 +69,26 @@
                 </tr>
             {% endfor %}
         </table>
+
+        <div  class = "container" align="center">
+            <div class ="row">
+
+            {%if books.has_previous %}
+                <a class ="btn btn-inverse" href="{% replace_url 1 'page' request.GET.urlencode%}"> First</a>
+                <a class ="btn btn-inverse" href="{%replace_url books.previous_page_number 'page' request.GET.urlencode%}"> < </a>
+            {% endif %}
+
+
+            <button class ="pgn-btn btn btn-dark mx-auto">{{books.number}}</button>
+
+            {% if books.has_next %}
+                <a class ="btn btn-inverse" href="{%replace_url books.next_page_number 'page' request.GET.urlencode%}"> > </a>
+                <a class ="btn btn-inverse" href="{%replace_url books.paginator.num_pages 'page' request.GET.urlencode%}">Last</a>
+            {% endif %}
+
+            </div>
+        </div>
+    </div>
+
     </div>
 {% endblock content %}

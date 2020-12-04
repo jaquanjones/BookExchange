@@ -172,14 +172,29 @@ def mybooks(request):
     myFilter = BookFilter(request.GET, queryset=books)
 
     books = myFilter.qs
+    paginator = Paginator(books, 5)
+
+    # will grab the current page from the url
+    page = request.GET.get('page')
+
+    books = paginator.get_page(page)
+
     for b in books:
         b.pic_path = b.picture.url[14:]
+
+    try:
+        response = paginator.page('page')
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
     return render(request,
                   'bookMng/mybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
                       'books': books,
-                      'filters': myFilter
+                      'filters': myFilter,
+                      'response': response
                   })
 
 
