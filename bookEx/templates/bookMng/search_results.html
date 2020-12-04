@@ -2,60 +2,62 @@
 {% load static %}
 
 {% block title %}
-    My Books
+    Search Results
 {% endblock title %}
 
+{#{% block sidenav %}#}
+{#    {% for item in item_list %}#}
+{#        <li>#}
+{#            <a href="{{ item.link }}"> {{ item.item }} </a>#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#{% endblock sidenav %}#}
 
-{% block sidenav %}
-    {% for item in item_list %}
-        <li>
-            <a href="{{ item.link }}"> {{ item.item }} </a>
-        </li>
-    {% endfor %}
-{% endblock sidenav %}
 
 {% block content %}
-    <div class="container-fluid" >
+
+
+    <div class="container-fluid">
         <div class="container " align="center">
             <div class="badge badge-pill badge-dark  mt-4"><h1 align="center"
-                                                               class="display-4 mx-auto my-auto px-3 py-2"> My
-                Books </h1></div>
+                                                               class="display-4 mx-auto my-auto px-3 py-2"> Search
+                Results </h1></div>
         </div>
 
-{#        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">#}
-{#            <thead class="thead-dark">#}
-{#            <tr>#}
-{#                <th scope="col"> Name</th>#}
-{#                <th scope="col"> Price</th>#}
-{#                <th scope="col"> Date</th>#}
-{#                <th scope="col"> Image</th>#}
-{#                <th scope="col"></th>#}
-{##}
-{#            </tr>#}
-{#            </thead>#}
-{#            {% for book in books %}#}
-{#                <tr>#}
-{#                    <td class="lead">#}
-{#                        <a href="book_detail/{{ book.id }}"  align="" >#}
-{#                            {{ book.name }}#}
-{#                        </a>#}
-{#                    </td>#}
-{#                    <td class="lead">{{ book.price }}</td>#}
-{#                    <td class="lead">{{ book.publishdate }}</td>#}
-{#                    <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>#}
-{##}
-{#                    <td class="lead">#}
-{#                        <a href="book_delete/{{ book.id }}"> Delete Book </a>#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-{#        </table>#}
+        {#        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">#}
+        {#            <thead class="thead-dark">#}
+        {#            <tr>#}
+        {#                <th scope="col"> Name</th>#}
+        {#                <th scope="col"> Price</th>#}
+        {#                <th scope="col"> Date</th>#}
+        {#                <th scope="col"> Image</th>#}
+        {#                <th scope="col">Posted By</th>#}
+        {#            </tr>#}
+        {#            </thead>#}
+        {#            {% for book in results %}#}
+        {#                <tr>#}
+        {#                    <td class="lead">#}
+        {#                        <a href="book_detail/{{ book.id }}">#}
+        {#                            {{ book.name }}#}
+        {#                        </a>#}
+        {#                    </td>#}
+        {#                    <td class="lead">{{ book.price }}</td>#}
+        {#                    <td class="lead">{{ book.publishdate }}</td>#}
+        {##}
+        {#                    <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>#}
+        {#                    <td class="lead">#}
+        {#                        {{ book.username }}#}
+        {#                    </td>#}
+        {##}
+        {#                </tr>#}
+        {#            {% endfor %}#}
+        {#        </table>#}
 
-                {#    *** START OF SECOND VIEW ***#}
+        {#    *** START OF SECOND VIEW ***#}
         <div class="container-fluid mx-auto pt-auto pb-5 my-auto">
             <div class="container-fluid mx-auto py-auto text-align-center">
                 <div class="row mx-5 my-5">
-                    {% for book in books %}
+                    {% for book in results %}
                         <div class="col-md-3 my-auto py-3">
                             <div class="card ">
                                 <img src="{% static book.pic_path %}" class="card-img-top" alt="">
@@ -80,10 +82,9 @@
 
                                     <div class="container-fluid">
                                         <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>
-{#                                        <a id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to#}
-{#                                            cart#}
-{#                                        </a>#}
-                                        <a href="book_delete/{{ book.id }}" class="btn btn-danger btn-block"> Delete Book </a>
+                                        <button id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to
+                                            cart
+                                        </button>
                                     </div>
 
                                 </div>
@@ -95,4 +96,5 @@
         </div>
         {#    *** END OF SECOND VIEW ***#}
     </div>
+
 {% endblock content %}

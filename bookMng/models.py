@@ -19,6 +19,12 @@ class Book(models.Model):
     picture = models.FileField(upload_to='bookEx/static/uploads')
     pic_path = models.CharField(max_length=300, editable=False, blank=True)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    category = models.CharField(max_length=200, default='', editable=True)  # added
+    description = models.TextField(default='', editable=True)  # added
+
+    class Meta:
+        verbose_name = "book"
+        verbose_name_plural = "books"
 
     def __str__(self):
         return str(self.id)

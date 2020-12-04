@@ -106,9 +106,6 @@ html, body {
     color: #FFFFFF;
 }
 
-.btn-inverse:hover{
-    background-color: #292b2c;
-    color: white;
+.selector-for-some-widget {
+  box-sizing: content-box;
 }
-
-

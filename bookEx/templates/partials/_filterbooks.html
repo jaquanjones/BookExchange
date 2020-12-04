@@ -1,14 +1,19 @@
-<form >
-  <div class="form-inline align-items-center ">
-      {% for field in myFilter.form %}
-            <div class=" col-sm-2 col-md-2">
-                {{field.label}}
-                {{field}}
-            </div>
+<form>
+    <div class="container form-inline align-items-center ">
+        {% for field in myFilter.form %}
+            <div class="input-group mt-5 mb-3 mx-3 col-sm-2 col-md-2">
 
-      {% endfor %}
-      <div class=" col-sm-2 col-md-2">
-        <button class="btn btn-dark" type="submit">Search</button>
-      </div>
-  </div>
+                <label class="lead">{{ field.label }}</label>
+                <div class="">
+                    {{ field }}
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container d-flex">
+        <button class="btn btn-lg btn-dark mx-auto my-3 " type="submit">Search</button>
+    </div>
+
 </form>

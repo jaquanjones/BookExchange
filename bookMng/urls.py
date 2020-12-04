@@ -8,4 +8,6 @@ urlpatterns = [
     path('postbook', views.postbook, name='postbook'),
     path('displaybooks', views.displaybooks, name='displaybooks'),
     path('mybooks', views.mybooks, name='mybooks'),
+    path('search', views.search_results, name='search_results'),
+    path('checkout/', views.checkout, name='checkout')
 ]

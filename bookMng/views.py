@@ -1,21 +1,16 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
+from .filters import BookFilter
+from .forms import BookForm
+from .models import Book
 from .models import MainMenu
 
-from .forms import BookForm
-from django.http import HttpResponseRedirect
-
-from .models import Book
-
-from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-
-from django.contrib.auth.decorators import login_required
-
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .filters import BookFilter
 
 # Create your views here.
 def index(request):
@@ -61,13 +56,13 @@ def postbook(request):
 def displaybooks(request):
     books = Book.objects.all()
 
-    #data gets rendered and filters it down if there are any filters applied
+    # data gets rendered and filters it down if there are any filters applied
     myFilter = BookFilter(request.GET, queryset=books)
-    #rebuilds the result from the filter
+    # rebuilds the result from the filter
     books = myFilter.qs
 
     # pagination for display books, change number of second parameter to get a customized number of books per page
-    paginator = Paginator(books, 1)
+    paginator = Paginator(books, 8)
 
     # will grab the current page from the url
     page = request.GET.get('page')
@@ -91,7 +86,6 @@ def displaybooks(request):
                       'myFilter': myFilter,
                       'response': response
                   })
-
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -138,3 +132,32 @@ class Register(CreateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+
+
+@login_required(login_url=reverse_lazy('login'))
+def search_results(request):
+    query = request.GET.get('q')
+    if query:
+        results = Book.objects.filter(
+            name__icontains=query
+        )
+        for b in results:
+            b.pic_path = b.picture.url[14:]
+    else:
+        results = None
+    return render(request,
+                  'bookMng/search_results.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'results': results,
+                  })
+
+
+@login_required(login_url=reverse_lazy('login'))
+def checkout(request):
+    return render(request,
+                  'bookMng/checkout.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      # 'results': results,
+                  })

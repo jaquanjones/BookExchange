@@ -20,9 +20,9 @@
 
 <body>
 <header>
-{#START OF NAVBAR#}
+    {#START OF NAVBAR#}
     <nav class="navbar navbar-expand-md navbar-dark sticky-top align-baseline" style="background-color: #0f3057;">
-{#    LOGO#}
+        {#    LOGO#}
         <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'logo-resized.png' %}" width="150"
                                                               height="75" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -55,9 +55,27 @@
                 </li>
             </ul>
 
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+            {#            START OF CART BUTTON#}
+            <a id="cart-button" role="button" data-html="true" type="button"
+               class="btn btn-outline-light mx-3 align-middle"
+               data-container="body"
+               data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+                <svg width="2em" height="1.6em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
+                </svg>
+                Cart (<span id="cart">0</span>)
+            </a>
+            {#            END OF CART BUTTON#}
+
+
+            <form action="{% url 'search_results' %}" method="get" class="form-inline mt-2 mt-md-0">
+                <input name="q" type="text" class="form-control mr-sm-2" placeholder="Search a book.."
+                       aria-label="Search">
+                <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">
             </form>
 
 
@@ -65,7 +83,7 @@
                 <span class="badge badge-success"
                       style="margin-left: 1em; margin-right: 1em;">{{ user.username }}</span>
             {% else %}
-                <span class="badge badge-secondary" style="margin-left: 1em; margin-right: 1em;">Not Logged In </span>
+                <span class="badge badge-secondary mx-auto">Not Logged In </span>
             {% endif %}
         </div>
     </nav>
@@ -73,51 +91,104 @@
 
 
 <div id="">
-{#    <header id="header">#}
-{#                <div id="logo">#}
-{#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
-{#                    <span id="top-menu" style="float: right;">#}
-{#                        {% if user.is_authenticated %}#}
-{#                            {{ user.username }}#}
-{#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
-{#                        {% else %}#}
-{#                            Login#}
-{#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
-{#                        {% endif %}#}
-{#                    </span>#}
-{#                </div>#}
-{#        <div id="topbanner">#}
-{#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
-{#        </div>#}
-{#    </header>#}
-<section id="">
+    {#    <header id="header">#}
+    {#                <div id="logo">#}
+    {#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
+    {#                    <span id="top-menu" style="float: right;">#}
+    {#                        {% if user.is_authenticated %}#}
+    {#                            {{ user.username }}#}
+    {#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
+    {#                        {% else %}#}
+    {#                            Login#}
+    {#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
+    {#                        {% endif %}#}
+    {#                    </span>#}
+    {#                </div>#}
+    {#        <div id="topbanner">#}
+    {#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
+    {#        </div>#}
+    {#    </header>#}
+    <section id="">
         {% block content %}
             Hello
         {% endblock content %}
     </section>
-{#    <aside id="leftsidebar">#}
-{#        <nav id="nav">#}
-{#            <ul>#}
-{#                {% block sidenav %}#}
-{#                    <li>Menu 1</li>#}
-{#                    <li>Menu 2</li>#}
-{#                    <li>Menu 3</li>#}
-{#                {% endblock sidenav %}#}
-{#            </ul>#}
-{#        </nav>#}
-{#    </aside>#}
+    {#    <aside id="leftsidebar">#}
+    {#        <nav id="nav">#}
+    {#            <ul>#}
+    {#                {% block sidenav %}#}
+    {#                    <li>Menu 1</li>#}
+    {#                    <li>Menu 2</li>#}
+    {#                    <li>Menu 3</li>#}
+    {#                {% endblock sidenav %}#}
+    {#            </ul>#}
+    {#        </nav>#}
+    {#    </aside>#}
 
 
-{#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
+    {#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
 </div>
 <footer class="container-fluid fixed-bottom my-auto py-auto align-text-bottom align-bottom" id="footer">
-  <p>&copy; CS3337 Django Web System</p>
+    <p>&copy; CS3337 Django Web System</p>
 </footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
+<script type="text/javascript">
+    console.log('Cart function working.');
+    var cart = localStorage.getItem('cart') === undefined ? {} : JSON.parse(localStorage.getItem('cart'));
+    {#$(function () {#}
+    {#    if (cart[item_id] !== undefined) {#}
+    {#        console.log(cart);#}
+    {#        localStorage.setItem('cart', JSON.stringify(cart));#}
+    {#        document.getElementById("cart").innerHTML = Object.keys(cart).length;#}
+    {#        console.log(Object.keys(cart).length);#}
+    {#    }#}
+    {# }); #}
+
+    $(document).on('click', '.atc', function () {
+        var item_id = this.id.toString();
+        console.log(item_id);
+
+        if (cart[item_id] !== undefined) {
+            quantity = cart[item_id][0] + 1;
+            cart[item_id][0] = quantity;
+            cart[item_id][2] = cart[item_id][2] + parseFloat(document.getElementById("price" + item_id).innerHTML);
+        } else {
+            quantity = 1;
+            price = parseFloat(document.getElementById("price" + item_id).innerHTML);
+            name = document.getElementById("nm" + item_id).innerHTML;
+            cart[item_id] = [quantity, name, price];
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("cart").innerHTML = Object.keys(cart).length;
+        console.log(Object.keys(cart).length);
+
+    });
+
+    DisplayCart(cart);
+
+    function DisplayCart(cart) {
+        var cartString = "";
+        cartString += '<div class="container-fluid"><h3 class=" text-center">Your cart</h3>';
+        var cartIndex = 1;
+        for (var x in cart) {
+            cartString += cartIndex;
+            cartString += " ";
+            cartString += document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x][0] + "</br>";
+            cartIndex += 1;
+        }
+        cartString += "<br><div class='row justify-content-md-center'><a class=\"lead btn btn-dark text-center mx-auto btn-block\" href='/checkout' role=\"button\" id='checkout'>Checkout</a></div></div>";
+        document.getElementById("cart-button").setAttribute('data-content', cartString);
+        $('[data-toggle="popover"]').popover('update');
+    }
+</script>
 </html>

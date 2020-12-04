@@ -10,6 +10,8 @@ class BookForm(ModelForm):
             'name',
             'web',
             'price',
+            'category',
+            'description',
             'picture',
         ]
         widgets = {
@@ -24,6 +26,16 @@ class BookForm(ModelForm):
                 }
             ),
             'price': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'category': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'description': forms.Textarea(
                 attrs={
                     'class': 'form-control'
                 }
