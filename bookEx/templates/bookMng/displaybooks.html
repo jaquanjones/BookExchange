@@ -23,6 +23,31 @@
                 Books </h1></div>
         </div>
 
+        <div class ="container mt-3" align="center">
+            <div class = "card p-3">
+                <h5 class = "card-title">Search Filters</h5>
+                   <form method = "get">
+                       <div class="form=row">
+                           <label > Username: </label>
+                            {{filters.form.user}}
+                           <label > Title: </label>
+                            {{filters.form.book_name}}
+                            <label > Publish Date: </label>
+                            {{filters.form.publishdate}}
+                            <br>
+                           <label > Min Price: </label>
+                            {{filters.form.min_price_range}}
+
+                             <label > Max Price: </label>
+                            {{filters.form.max_price_range}}
+                            <button class ="btn btn-dark"> Search </button>
+                       </div>
+                    </form>
+                </div>
+        </div>
+
+
+
         <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
             <thead class="thead-dark">
             <tr>

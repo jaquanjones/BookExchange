@@ -2,6 +2,8 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .filters import BookFilter
+
 from .models import MainMenu
 
 from .forms import BookForm
@@ -59,13 +61,18 @@ def postbook(request):
 @login_required(login_url=reverse_lazy('login'))
 def displaybooks(request):
     books = Book.objects.all()
+
+    myFilter = BookFilter(request.GET, queryset=books)
+
+    books = myFilter.qs
     for b in books:
         b.pic_path = b.picture.url[14:]
     return render(request,
                   'bookMng/displaybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      'books': books
+                      'books': books,
+                      'filters': myFilter
                   })
 
 
@@ -84,13 +91,17 @@ def book_detail(request, book_id):
 @login_required(login_url=reverse_lazy('login'))
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
+    myFilter = BookFilter(request.GET, queryset=books)
+
+    books = myFilter.qs
     for b in books:
         b.pic_path = b.picture.url[14:]
     return render(request,
                   'bookMng/mybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      'books': books
+                      'books': books,
+                      'filters': myFilter
                   })
 
 
