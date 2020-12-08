@@ -12,8 +12,9 @@
 {% endblock sidenav %}
 
 {% block content %}
-    <div align="center">
-        <h1>User Registration Success</h1>
-        <p>To login, <a href="{% url 'login' %}?next=/">Click Here</a></p>
+    <div class="alert alert-success" align="center">
+        <h1 class="alert-heading">User Registration Success</h1>
+        <hr>
+        <p class="mb-0">To login, <a href="{% url 'login' %}?next=/">Click Here</a></p>
     </div>
 {% endblock content %}

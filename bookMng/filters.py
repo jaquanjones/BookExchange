@@ -7,6 +7,7 @@ from .models import *
 class BookFilter(django_filters.FilterSet):
     # custom fields that relate to an attribute in the model
 
+    book_category = CharFilter(field_name="category", lookup_expr='icontains', label='Category: ')
     book_price = CharFilter(field_name="price", lookup_expr='lte', label="Price: ")
     book_name = CharFilter(field_name="name", lookup_expr='icontains', label='Title: ')
     start_date = DateFilter(field_name="publishdate", lookup_expr='gte', label='Start Date: ')
@@ -15,5 +16,5 @@ class BookFilter(django_filters.FilterSet):
 
     class Meta:
         model = Book
-        fields = ['book_price', 'book_name', 'start_date', 'end_date', 'user']
+        fields = ['book_name', 'book_category', 'user', 'book_price', 'start_date', 'end_date']
         exclude = ['picture', 'pic_path', 'publishdate']

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+
 from .models import Book
 
 
@@ -35,14 +36,15 @@ class BookForm(ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'description': forms.Textarea(
+            'description': forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }
             ),
             'picture': forms.FileInput(attrs={
-                'class': 'custom-file-input',
+                'class': 'form-control-file',
                 'id': 'image-upload',
                 'required': True
             }),
         }
+

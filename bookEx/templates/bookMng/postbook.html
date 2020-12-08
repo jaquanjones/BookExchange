@@ -28,7 +28,7 @@
                 </div>
             {% else %}
                 <div class="container ">
-                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                    <form action=" {% url 'postbook' %}" enctype="multipart/form-data" method="post" novalidate>
                         <div class="form-group">
                             <label class="lead">Name: </label>
                             {{ form.name }}
@@ -47,13 +47,12 @@
                         </div>
                         <div class="form-group">
                             <label class="lead">Description: </label>
-                            {{ form.price }}
+                            {{ form.description }}
                         </div>
                         <div class="mt-4">
                             <div class="custom-file">
-                                <label class="lead custom-file-label" for="image-upload">Select an image.. </label>
                                 {{ form.picture }}
-                                {#                        <input type="file" class="form-control-file" id="image-upload">#}
+                                <label class="lead custom-file-label" for="image-upload">Select an image.. </label>
                             </div>
                         </div>
                         {#                        {{ form.as_table }}#}

@@ -40,38 +40,65 @@
         {#                <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>#}
         {#            </tr>#}
         {#        </table>#}
-        <div class="container col-md-6 my-3 mx-auto pt-3 pb-5">
-            <div class="card w-100">
-                <img src="{% static book.pic_path %}" class="card-img-top" alt="">
-                <div class="card-body text-left">
-                    <div class="container">
-                        <h3 id="nm{{ book.id }}" class="card-title text-center ">{{ book.name }}</h3>
-                        <div class="row justify-content-center">
-                            <p class="card-text text-center"><small class="text-muted">Posted
-                                By:</small></p>
-                            <p class="badge badge-pill badge-dark mt-auto text-center mx-2">{{ book.username }}</p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div id="price{{ book.id }}" class="card-text lead mb-3 text-center">Price:
-                                ${{ book.price }}</div>
-                        </div>
+        <hr>
+        <div class="container my-3 pt-3 pb-5 mx-auto" align="center">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static book.pic_path %}" class=" rounded" alt="" >
+                </div>
+                <div class="col-md-6">
+                    <div class="card" >
 
-                        <div class="row justify-content-start">
-                            <h5 class=" mb-2">Description: </h5>
-                            <p>{{ book.description }}</p>
+                        <div class="card-body text-left">
+                            <div class="container">
+                                <h1 id="nm{{ book.id }}"
+                                    class="card-title text-center">{{ book.name }}</h1>
+
+                                <div class="row mx-auto mt-5 justify-content-start">
+                                    <h5 class=" mb-2">Posted By:
+                                        <div class="badge badge-dark mx-1 py-1" style="background-color: #008891; color: #FFFFFF;">
+                                            {{ book.username }}</div>
+                                    </h5>
+                                </div>
+
+                                <hr>
+
+                                <div class="row mx-auto justify-content-start">
+                                    <h5 class=" mb-2">Price:
+                                        <div class="badge badge-dark mx-1 py-1">
+                                            ${{ book.price }}</div>
+                                    </h5>
+                                </div>
+
+                                <hr>
+
+                                <div class="row mx-auto justify-content-start">
+                                    <h5 class=" mb-2">Category:
+                                        <div class="badge badge-dark mx-1 py-1">
+                                            {{ book.category }}</div>
+                                    </h5>
+                                </div>
+
+                                <hr>
+
+                                <div class="row mx-auto justify-content-start">
+                                    <h5 class=" mb-2">Description: </h5>
+                                    <p>{{ book.description }}</p>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid">
+                                {#                        <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>#}
+                                {#                                        <a id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to#}
+                                {#                                            cart#}
+                                {#                                        </a>#}
+                                <button id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to
+                                    cart
+                                </button>
+                            </div>
+
                         </div>
                     </div>
-
-                    <div class="container-fluid">
-{#                        <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>#}
-                        {#                                        <a id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to#}
-                        {#                                            cart#}
-                        {#                                        </a>#}
-                        <button id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to
-                            cart
-                        </button>
-                    </div>
-
                 </div>
             </div>
         </div>
