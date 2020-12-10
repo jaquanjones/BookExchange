@@ -28,3 +28,15 @@ class Book(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Order(models.Model):
+    items = models.CharField(max_length=1000)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    address = models.CharField(max_length=1000)
+    country = models.CharField(max_length=200)
+    state = models.CharField(max_length=200)
+    zipcode = models.CharField(max_length=200)
+    username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+

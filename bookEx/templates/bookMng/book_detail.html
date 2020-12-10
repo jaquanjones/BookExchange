@@ -51,9 +51,7 @@
 
                         <div class="card-body text-left">
                             <div class="container">
-                                <h1 id="nm{{ book.id }}"
-                                    class="card-title text-center">{{ book.name }}</h1>
-
+                                <h1 id="nm{{ book.id }}" class="card-title text-center">{{ book.name }}</h1>
                                 <div class="row mx-auto mt-5 justify-content-start">
                                     <h5 class=" mb-2">Posted By:
                                         <div class="badge badge-dark mx-1 py-1" style="background-color: #008891; color: #FFFFFF;">
@@ -64,9 +62,8 @@
                                 <hr>
 
                                 <div class="row mx-auto justify-content-start">
-                                    <h5 class=" mb-2">Price:
-                                        <div class="badge badge-dark mx-1 py-1">
-                                            ${{ book.price }}</div>
+                                    <h5 class=" mb-2">Price: $
+                                        <div id="price{{ book.id }}" class="badge badge-dark mx-1 py-1">{{ book.price }}</div>
                                     </h5>
                                 </div>
 
