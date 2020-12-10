@@ -1,9 +1,9 @@
 <form>
-    <div class="container form-inline align-items-center mt-5 mx-auto" align="center">
+    <div class="container form-inline align-items-center mt-5 col-10 col-md-8 col-sm-6" align="center">
         {% for field in myFilter.form %}
-            <div class="input-group input-group-lg mb-3 mx-auto ">
+            <div class="input-group input-group-lg mb-3 ml-0 mr-auto " >
                 <div class="input-group-prepend rounded-left" >
-                    <span class="input-group-text " style="background-color: #008891; color: #FFFFFF;">{{ field.label }}</span>
+                    <span class="input-group-text w100" style="background-color: #008891; color: #FFFFFF;">{{ field.label }}</span>
                 </div>
                 {{ field }}
             </div>

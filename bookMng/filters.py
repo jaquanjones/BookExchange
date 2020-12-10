@@ -8,8 +8,8 @@ class BookFilter(django_filters.FilterSet):
     # custom fields that relate to an attribute in the model
 
     book_category = CharFilter(field_name="category", lookup_expr='icontains', label='Category: ')
-    book_price = CharFilter(field_name="price", lookup_expr='lte', label="Price: ")
-    book_name = CharFilter(field_name="name", lookup_expr='icontains', label='Title: ')
+    book_price = CharFilter(field_name="price", lookup_expr='lte', label="Max price: ")
+    book_name = CharFilter(field_name="name", lookup_expr='icontains', label='Book title: ')
     start_date = DateFilter(field_name="publishdate", lookup_expr='gte', label='Start Date: ')
     end_date = DateFilter(field_name="publishdate", lookup_expr='lte', label='End Date: ')
     user = CharFilter(field_name="username__username", lookup_expr='icontains', label='Posted By: ')
