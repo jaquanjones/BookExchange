@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Leave a Review
+{% endblock title %}
+
+{#{% block sidenav %}#}
+{#    {% for item in item_list %}#}
+{#
+<li>#}
+    {# <a href="{{ item.link }}"> {{ item.item }} </a>#}
+    {#
+</li>#}
+{#    {% endfor %}#}
+{#{% endblock sidenav %}#}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="container " align="center">
+        <div class="badge badge-pill badge-dark  mt-4"><h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> {{ book.name }} Info </h1></div>
+    </div>
+
+    <div>
+        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col"> Name</th>
+            <th scope="col"> Price</th>
+            <th scope="col"> Date</th>
+            <th scope="col"> Image</th>
+
+        </tr>
+        </thead>
+        <tr>
+            <td class="lead">{{ book.name }}</td>
+            <td class="lead">{{ book.price }}</td>
+            <td class="lead">{{ book.publishdate }}</td>
+            <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>
+        </tr>
+    </table>
+    </div>
+
+    <div class="container my-auto py-4">
+            {% if submitted %}
+                <div class="alert alert-success" role="alert">
+                    Post Successful!
+                </div>
+            {% else %}
+                <div class="container ">
+                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                        <div class="form-group">
+<!--                            <textarea cols="40" name="content" class="form-control" rows="4" required></textarea>-->
+                            {{ form.content }}
+                        </div>
+                        <div class="container" align="right" >
+                        <input class="btn btn-lg btn-secondary my-4" style="background-color: #008891; color: #FFFFFF;" type="submit" value="Submit">
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+
+</div>
+{% endblock content %}

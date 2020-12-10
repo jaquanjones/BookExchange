@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Book
-
+from .models import Review
 
 class BookForm(ModelForm):
     class Meta:
@@ -34,3 +34,9 @@ class BookForm(ModelForm):
                 'required': True
             }),
         }
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            'content'
+        ]

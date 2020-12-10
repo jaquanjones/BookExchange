@@ -57,6 +57,7 @@
                 <th scope="col"> Date</th>
                 <th scope="col"> Image</th>
                 <th scope="col">Posted By</th>
+                <th scope="col">Review</th>
 
             </tr>
             </thead>
@@ -74,7 +75,9 @@
                     <td class="lead">
                         {{ book.username }}
                     </td>
-
+                    <td class="lead">
+                        <a href="leave_review/{{ book.id }}" align=""> Leave a review</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
