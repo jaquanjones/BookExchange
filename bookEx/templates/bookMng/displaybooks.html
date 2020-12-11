@@ -35,7 +35,7 @@
                 <th scope="col"> Date</th>
                 <th scope="col"> Image</th>
                 <th scope="col">Posted By</th>
-
+                <th scope="col">Review</th>
             </tr>
             </thead>
             {% for book in books %}
@@ -47,14 +47,14 @@
                     </td>
                     <td class="lead">{{ book.category }}</td>
                     <td class="lead">${{ book.price }}</td>
-
                     <td class="lead">{{ book.publishdate }}</td>
-
                     <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>
                     <td class="lead">
                         {{ book.username }}
                     </td>
-
+                    <td class="lead">
+                        <a href="leave_review/{{ book.id }}" align=""> Leave a review</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

@@ -23,38 +23,22 @@
             </div>
         </div>
 
-        {#        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">#}
-        {#            <thead class="thead-dark">#}
-        {#            <tr>#}
-        {#                <th scope="col"> Name</th>#}
-        {#                <th scope="col"> Price</th>#}
-        {#                <th scope="col"> Date</th>#}
-        {#                <th scope="col"> Image</th>#}
-        {##}
-        {#            </tr>#}
-        {#            </thead>#}
-        {#            <tr>#}
-        {#                <td class="lead">{{ book.name }}</td>#}
-        {#                <td class="lead">{{ book.price }}</td>#}
-        {#                <td class="lead">{{ book.publishdate }}</td>#}
-        {#                <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>#}
-        {#            </tr>#}
-        {#        </table>#}
         <hr>
         <div class="container my-3 pt-3 pb-5 mx-auto" align="center">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{% static book.pic_path %}" class=" rounded" alt="" >
+                    <img src="{% static book.pic_path %}" class=" rounded" alt="">
                 </div>
                 <div class="col-md-6">
-                    <div class="card" >
+                    <div class="card">
 
                         <div class="card-body text-left">
                             <div class="container">
                                 <h1 id="nm{{ book.id }}" class="card-title text-center">{{ book.name }}</h1>
                                 <div class="row mx-auto mt-5 justify-content-start">
                                     <h5 class=" mb-2">Posted By:
-                                        <div class="badge badge-dark mx-1 py-1" style="background-color: #008891; color: #FFFFFF;">
+                                        <div class="badge badge-dark mx-1 py-1"
+                                             style="background-color: #008891; color: #FFFFFF;">
                                             {{ book.username }}</div>
                                     </h5>
                                 </div>
@@ -63,7 +47,8 @@
 
                                 <div class="row mx-auto justify-content-start">
                                     <h5 class=" mb-2">Price: $
-                                        <div id="price{{ book.id }}" class="badge badge-dark mx-1 py-1">{{ book.price }}</div>
+                                        <div id="price{{ book.id }}"
+                                             class="badge badge-dark mx-1 py-1">{{ book.price }}</div>
                                     </h5>
                                 </div>
 
@@ -94,11 +79,30 @@
                                 </button>
                             </div>
 
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2"
+               width="800">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Author</th>
+                <th scope="col"> Reviews</th>
+            </tr>
+            </thead>
+            {% for review in reviews %}
+                <tr>
+                    <td class="lead">{{ review.username }}</td>
+                    <td class="lead">{{ review.content }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+
     </div>
 {% endblock content %}
 {#<div class="col-md-3 my-auto py-3">#}

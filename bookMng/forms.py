@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Book, Order
+from .models import Book, Review
 
 
 class BookForm(ModelForm):
@@ -48,6 +48,13 @@ class BookForm(ModelForm):
             }),
         }
 
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            'content'
+        ]
 
 # class OrderForm(ModelForm):
 #     class Meta:
