@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Book
+from .models import Book, Order
 
 
 class BookForm(ModelForm):
@@ -48,3 +48,62 @@ class BookForm(ModelForm):
             }),
         }
 
+
+# class OrderForm(ModelForm):
+#     class Meta:
+#         model = Order
+#         fields = [
+#             'items',
+#             'first_name',
+#             'last_name',
+#             'email',
+#             'address',
+#             'country',
+#             'state',
+#             'zipcode'
+#         ]
+#         widgets = {
+#             'first_name': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 }
+#             ),
+#             'last_name': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 }
+#             ),
+#             'email': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 }
+#             ),
+#             'address': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 }
+#             ),
+#             'address2': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 },
+#             ),
+#             'country': forms.ChoiceField(
+#                 attrs={
+#                     'class': 'custom-select d-block w-100',
+#                 },
+#                 choices='United States'
+#             ),
+#             'state': forms.ChoiceField(
+#                 attrs={
+#                     'class': 'custom-select d-block w-100'
+#                 },
+#                 choices='California'
+#             ),
+#             'zipcode': forms.TextInput(
+#                 attrs={
+#                     'class': 'form-control'
+#                 }
+#             ),
+#
+#         }

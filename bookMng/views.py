@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView
 
 from .filters import BookFilter
 from .forms import BookForm
-from .models import Book, Order
+from .models import Book, Order, OrderItem
 from .models import MainMenu
 
 
@@ -155,23 +155,39 @@ def search_results(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def checkout(request):
-    if request.method == "POST":
-        items = request.POST.get('items', '')
-        first_name = request.POST.get('firstName', '')
-        last_name = request.POST.get('lastName', '')
-        email = request.POST.get('email', '')
-        address = request.POST.get('address', '') + " "
-        address += request.POST.get('address2', '')
-        country = request.POST.get('country', '')
-        state = request.POST.get('state', '')
-        zipcode = request.POST.get('zip', '')
+    books = Book.objects.all()
 
-        order = Order(items=items, first_name=first_name, last_name=last_name, email=email, address=address,
-                      country=country, state=state, zipcode=zipcode)
+    if request.method == "POST":
+        items = request.POST.get('items')
+        quantities = request.POST.get('quantities')
+
+        order_list = []
+        for (item, quantity) in zip(items, quantities):
+            order_list.append(OrderItem(item, quantity))
+
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        email = request.POST.get('email')
+        address = request.POST.get('address', )
+        address2 = request.POST.get('address2', '')
+        country = request.POST.get('country')
+        state = request.POST.get('state')
+        zipcode = request.POST.get('zip')
+
+        # need to properly add book objects to order object
+        order = Order(first_name=first_name, last_name=last_name, email=email, address=address,
+                      address2=address2, country=country, state=state, zipcode=zipcode, username=request.user)
+        order.__setattr__(items,order_list)
         order.save()
+        # try:
+        #     order.username = request.user
+        # except Exception:
+        #     pass
+
     return render(request,
                   'bookMng/checkout.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      # 'results': results,
+                      # 'books_in_cart': books_in_cart,
+                      'books': books
                   })

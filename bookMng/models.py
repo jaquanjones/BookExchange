@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 # Create your models here.
@@ -29,14 +29,21 @@ class Book(models.Model):
     def __str__(self):
         return str(self.id)
 
+
+class OrderItem(models.Model):
+    item = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+
 class Order(models.Model):
-    items = models.CharField(max_length=1000)
+    items = models.ManyToManyField(OrderItem)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     address = models.CharField(max_length=1000)
+    address2 = models.CharField(max_length=1000, default='')
     country = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-
+    timestamp = models.DateTimeField(auto_now=True)

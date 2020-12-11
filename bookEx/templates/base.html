@@ -64,14 +64,8 @@
                data-container="body"
                data-toggle="popover" data-placement="bottom" data-content="Vivamus
 sagittis lacus vel augue laoreet rutrum faucibus.">
-                {#                <svg width="2em" height="1.6em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor"#}
-                {#                     xmlns="http://www.w3.org/2000/svg">#}
-                {#                    <path fill-rule="evenodd"#}
-                {#                          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>#}
-                {#                </svg>#}
                 <i class="fas fa-shopping-cart"></i>
                 Cart (<span id="cart-count">0</span>)
-                {#                Cart(0)#}
             </a>
             {#            END OF CART BUTTON#}
 
@@ -161,7 +155,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
             quantity = 1;
             price = parseFloat(document.getElementById("price" + item_id).innerHTML);
             name = document.getElementById("nm" + item_id).innerHTML;
-            book_id = item_id
+            book_id = item_id;
             cart[item_id] = [quantity, name, price, book_id];
         }
         console.log(cart);
@@ -178,14 +172,17 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
         var cartIndex = 1;
         for (var x in cart) {
             var book_name = cart[x][1];
-            var book_quantity = cart[x][0]
-            cartString += '<li class="list-group-item list-group-item-action lead justify-content-between">'
+            var book_quantity = cart[x][0];
+            var book_id = cart[x][3];
+            cartString += `<a href="/book_detail/${book_id}" class="list-group-item list-group-item-action lead justify-content-between">`;
             {#cartString += cartIndex;#}
             {#cartString += ": ";#}
-            cartString += book_name + '</br>Qty:  <span class="badge badge-dark badge-pill py-auto">' + book_quantity + "</span></br></li>";
+            cartString += book_name + '</br>Qty:  <span class="badge badge-dark badge-pill py-auto">' + book_quantity + "</span></br></a>";
             cartIndex += 1;
         }
-        cartString += "</ul><br><div class='row justify-content-md-center'><a class=\"lead btn btn-dark text-center mx-auto btn-block\" href='/checkout' role=\"button\" id='checkout'>Checkout</a></div></div>";
+        cartString += "</ul><br><div class='row justify-content-md-center'>" +
+            "<a class=\"lead btn btn-dark text-center mx-auto btn-block\" href='/checkout' role=\"button\" id='checkout'>" +
+            "Checkout</a></div></div>";
         document.getElementById("cart").setAttribute('data-content', cartString);
         $('a#cart').popover();
     }
@@ -197,7 +194,64 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById("cart-count").innerHTML = Object.keys(cart).length;
         console.log(Object.keys(cart).length);
+        {#var books_in_cart = [];#}
+        {#for (var index in cart) {#}
+        {#    var book_id = cart[index][3];#}
+        {#    books_in_cart.push(book_id);#}
+        {# } #}
+        {#Document.localStorage('booksInCart', books_in_cart);#}
+
     });
+
+    let total = 0;
+    let checkoutCount = 0;
+    let order_item_id_list = [];
+    let quantity_list = [];
+    for (item in cart) {
+        let name = cart[item][1];
+        let quantity = cart[item][0];
+        let price = cart[item][2];
+        let item_id = cart[item][3];
+        order_item_id_list.push(cart[item][3]);
+        quantity_list.push(quantity);
+        checkoutCount += quantity;
+        total = total + cart[item][2];
+
+        checkoutString = `<li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">${name}</h6>
+                                    <small class="text-muted">Quantity: x${quantity}</small>
+                                </div>
+                                <span class="text-muted">$${price}</span>
+                            </li>`;
+        $('#checkout_list').append(checkoutString);
+    }
+
+    sampleDiscount = ` <li class="list-group-item d-flex justify-content-between bg-light">
+                                <div class="text-success">
+                                    <h6 class="my-0">Promo code</h6>
+                                    <small>MYFIRSTPURCHASE</small>
+                                </div>
+                                <span class="text-success">-$5</span>
+                            </li> `
+    total -= 5;
+    $('#total').val(total);
+
+    totalPrice = ` <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (USD)</span>
+                            <strong>$${total}</strong>
+                        </li> `;
+
+    $('#checkout_list').append(sampleDiscount);
+    $('#checkout_list').append(totalPrice);
+    if (document.getElementById("checkout_count")) {
+        document.getElementById("checkout_count").innerHTML = checkoutCount.toString();
+    }
+
+    $('#orderitems').valueOf(order_item_id_list);
+    $('#orderQuantities').valueOf(quantity_list);
+
+    console.log(order_item_id_list);
 
 </script>
 </html>
