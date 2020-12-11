@@ -55,6 +55,14 @@ class ReviewForm(ModelForm):
         fields = [
             'content'
         ]
+        widgets = {
+            'content': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'rows': 10,
+                }
+            ),
+        }
 
 # class OrderForm(ModelForm):
 #     class Meta:

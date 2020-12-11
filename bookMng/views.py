@@ -231,7 +231,7 @@ def leave_review(request, book_id):
 
 @login_required(login_url=reverse_lazy('login'))
 def profile(request):
-    books = Book.objects.filter(username=request.user)
+    books = Book.objects.filter(username=request.user).order_by('publishdate')
     for b in books:
         b.pic_path = b.picture.url[14:]
     return render(request,
