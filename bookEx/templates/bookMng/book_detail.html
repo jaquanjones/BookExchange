@@ -5,21 +5,12 @@
     Book Detail
 {% endblock title %}
 
-{#{% block sidenav %}#}
-{#    {% for item in item_list %}#}
-{#        <li>#}
-{#            <a href="{{ item.link }}"> {{ item.item }} </a>#}
-{#        </li>#}
-{#    {% endfor %}#}
-{#{% endblock sidenav %}#}
-
 {% block content %}
 
     <div class="container">
         <div class="container " align="center">
-            <div class="badge badge-pill badge-dark  mt-4"><h1 align="center"
-                                                               class="display-4 mx-auto my-auto px-3 py-2"> Book
-                Details </h1>
+            <div class="badge badge-pill badge-dark  mt-4">
+                <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Book Details </h1>
             </div>
         </div>
 
@@ -39,7 +30,8 @@
                                     <h5 class=" mb-2">Posted By:
                                         <div class="badge badge-dark mx-1 py-1"
                                              style="background-color: #008891; color: #FFFFFF;">
-                                            {{ book.username }}</div>
+                                            {{ book.username }}
+                                        </div>
                                     </h5>
                                 </div>
 
@@ -48,7 +40,8 @@
                                 <div class="row mx-auto justify-content-start">
                                     <h5 class=" mb-2">Price: $
                                         <div id="price{{ book.id }}"
-                                             class="badge badge-dark mx-1 py-1">{{ book.price }}</div>
+                                             class="badge badge-dark mx-1 py-1">{{ book.price }}
+                                        </div>
                                     </h5>
                                 </div>
 
@@ -57,7 +50,8 @@
                                 <div class="row mx-auto justify-content-start">
                                     <h5 class=" mb-2">Category:
                                         <div class="badge badge-dark mx-1 py-1">
-                                            {{ book.category }}</div>
+                                            {{ book.category }}
+                                        </div>
                                     </h5>
                                 </div>
 
@@ -70,10 +64,6 @@
                             </div>
 
                             <div class="container-fluid">
-                                {#                        <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>#}
-                                {#                                        <a id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to#}
-                                {#                                            cart#}
-                                {#                                        </a>#}
                                 <button id="{{ book.id }}" class="btn atc btn-primary btn-block">Add to
                                     cart
                                 </button>
@@ -86,53 +76,32 @@
             </div>
         </div>
 
-        <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2"
-               width="800">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Author</th>
-                <th scope="col"> Reviews</th>
-            </tr>
-            </thead>
-            {% for review in reviews %}
-                <tr>
-                    <td class="lead">{{ review.username }}</td>
-                    <td class="lead">{{ review.content }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <div class="container " align="center">
+            <div class="badge badge-pill badge-dark  mt-auto">
+                <h1 align="center" class=" mx-auto my-auto px-3 py-2"> Reviews </h1>
+            </div>
+        </div>
+
+        <div class="container mb-5 pb-5">
+            <div class="container mb-5">
+                <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2"
+                       width="800">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Author</th>
+                        <th scope="col"> Reviews</th>
+                    </tr>
+                    </thead>
+                    {% for review in reviews %}
+                        <tr>
+                            <td class="lead">{{ review.username }}</td>
+                            <td class="lead">{{ review.content }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
 
 
     </div>
 {% endblock content %}
-{#<div class="col-md-3 my-auto py-3">#}
-{#    <div class="card ">#}
-{#        <img src="{% static book.pic_path %}" class="card-img-top" alt="">#}
-{#        <div class="card-body text-left">#}
-{#            <div class="container">#}
-{#                <h3 id="nm{{ book.id }}" class="card-title text-center ">{{ book.name }}</h3>#}
-{#                <div class="row justify-content-center">#}
-{#                    <p class="card-text text-center"><small class="text-muted">Posted#}
-{#                        By:</small></p>#}
-{#                    <p class="badge badge-pill badge-dark mt-auto text-center mx-2">{{ book.username }}</p>#}
-{#                </div>#}
-{#                <div class="row justify-content-center">#}
-{#                    <div id="price{{ book.id }}" class="card-text lead mb-3 text-center">Price:#}
-{#                        ${{ book.price }}</div>#}
-{#                </div>#}
-{##}
-{#                <div class="row justify-content-start">#}
-{#                    <h5 class=" mb-2">Description: </h5>#}
-{#                    <p>${{ book.description }}</p>#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#            <div class="container-fluid">#}
-{#                <a id="{{ book.id }}" class="btn atc btn-primary btn-block">#}
-{#                    Add to cart#}
-{#                </a>#}
-{#                <a href="book_delete/{{ book.id }}" class="btn btn-danger btn-block"> Delete Book </a>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}

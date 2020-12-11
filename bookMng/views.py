@@ -14,9 +14,6 @@ from .models import MainMenu
 
 # Create your views here.
 def index(request):
-    # return HttpResponse("<h1 align='center'>Hello World</h1>")
-    # return render(request, 'base.html')
-    # return render(request, 'bookMng/displaybooks.html')
     return render(request,
                   'bookMng/home.html',
                   {

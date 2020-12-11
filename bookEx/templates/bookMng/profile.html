@@ -2,105 +2,108 @@
 {% load static %}
 
 {% block title %}
-    Your Account
+Your Account
 {% endblock title %}
 
 
 {% block sidenav %}
-    {% for item in item_list %}
-        <li>
-            <a href="{{ item.link }}"> {{ item.item }} </a>
-        </li>
-    {% endfor %}
+{% for item in item_list %}
+<li>
+    <a href="{{ item.link }}"> {{ item.item }} </a>
+</li>
+{% endfor %}
 {% endblock sidenav %}
 
 {% block content %}
-    <div class="container">
+<div class="container">
 
-        <div class="container " align="center">
-            <div class="badge badge-pill badge-dark  mt-4">
-                <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Your Account </h1>
-            </div>
+    <div class="container " align="center">
+        <div class="badge badge-pill badge-dark  mt-4">
+            <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Your Account </h1>
         </div>
+    </div>
 
-        <div class="container my-3 pt-3 pb-5 mx-auto" align="center">
-            <div class="container d-flex justify-content-center mt-50 mb-50">
-                <div class="col-md-8">
-                    <div class="card">
-                        <img class="card-img-top" src="{% static 'user-4.jpg' %}" alt="Card image cap">
-                        <div class="card-body text-center">
-                            <div class="cart-text">
-                                <p class="lead"><a href="#"> Change Profile Picture </a></p>
-                                <div class="row mx-auto mt-auto justify-content-around">
-                                    <h5 class=" mb-2">Username:
-                                        <div class="badge badge-dark mx-1 py-1"
-                                             style="background-color: #008891; color: #FFFFFF;">
-                                            {{ user.username }}</div>
-                                    </h5>
-                                </div>
-                                <span class="d-block text-muted"><h6> Date Joined: {{ user.date_joined }}</h6></span>
+    <div class="container my-3 pt-3 pb-5 mx-auto" align="center">
+        <div class="container d-flex justify-content-center mt-50 mb-50">
+            <div class="col-md-8">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'user-4.jpg' %}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <div class="cart-text">
+                            <p class="lead"><a href="#"> Change Profile Picture </a></p>
+                            <div class="row mx-auto mt-auto justify-content-around">
+                                <h5 class=" mb-2">Username:
+                                    <div class="badge badge-dark mx-1 py-1"
+                                         style="background-color: #008891; color: #FFFFFF;">
+                                        {{ user.username }}
+                                    </div>
+                                </h5>
                             </div>
+                            <span class="d-block text-muted"><h6> Date Joined: {{ user.date_joined }}</h6></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container " align="center">
-            <div class="badge badge-pill badge-dark  mt-auto">
-                <h1 align="center" class=" mx-auto my-auto px-3 py-2"> Recent Books </h1>
-            </div>
+    <div class="container " align="center">
+        <div class="badge badge-pill badge-dark  mt-auto">
+            <h1 align="center" class=" mx-auto my-auto px-3 py-2"> Recent Books </h1>
         </div>
+    </div>
 
 
-     <div class="container-fluid mx-auto pt-auto pb-5 my-auto">
-            <div class="container-fluid mx-auto py-auto text-align-center">
-                <div class="row mx-0 my-5 ">
-                    {% for book in books %}
-                        <div class="col-md-4 mb-auto py-3">
-                            <div class="card ">
-                                <img src="{% static book.pic_path %}" class="rounded" alt="">
-                                <div class="card-body text-left">
-                                    <div class="container">
-                                        <h3 id="nm{{ book.id }}" class="card-title text-center ">{{ book.name }}</h3>
+    <div class="container-fluid  pt-auto pb-5 my-auto">
+        <div class="container-fluid py-auto text-align-center">
+            <div class="row mx-0 my-5 ">
+                {% for book in books %}
+                <div class="col-md-4 mb-auto py-3">
+                    <div class="card ">
+                        <img src="{% static book.pic_path %}" class="rounded" alt="">
+                        <div class="card-body text-left">
+                            <div class="container">
+                                <h3 id="nm{{ book.id }}" class="card-title text-center ">{{ book.name }}</h3>
 
-                                        <div class="row mx-auto mt-3 justify-content-start">
-                                            <h5 class=" mb-2">Price:
-                                                <div class="badge badge-dark mx-1 py-1">
-                                                    ${{ book.price }}</div>
-                                            </h5>
+                                <div class="row mx-auto mt-3 justify-content-start">
+                                    <h5 class=" mb-2">Price:
+                                        <div class="badge badge-dark mx-1 py-1">
+                                            ${{ book.price }}
                                         </div>
+                                    </h5>
+                                </div>
 
-                                        <hr>
-                                        <div class="row mx-auto justify-content-start">
-                                            <h5 class=" mb-2">Category:
-                                                <div class="badge badge-dark mx-1 py-1">
-                                                    {{ book.category }}</div>
-                                            </h5>
+                                <hr>
+                                <div class="row mx-auto justify-content-start">
+                                    <h5 class=" mb-2">Category:
+                                        <div class="badge badge-dark mx-1 py-1">
+                                            {{ book.category }}
                                         </div>
+                                    </h5>
+                                </div>
 
-                                        <hr>
-                                        <div class="row mx-auto justify-content-start">
-                                            <h5 class=" mb-2">Description: </h5>
-                                            <p>{{ book.description }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="container-fluid">
-                                        <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>
-                                        <a href="book_delete/{{ book.id }}" class="btn btn-danger btn-block"> Delete
-                                            Book </a>
-                                    </div>
-
+                                <hr>
+                                <div class="row mx-auto justify-content-start">
+                                    <h5 class=" mb-2">Description: </h5>
+                                    <p>{{ book.description }}</p>
                                 </div>
                             </div>
+
+                            <div class="container-fluid">
+                                <a href="book_detail/{{ book.id }}" class="btn btn-dark btn-block">View</a>
+                                <a href="book_delete/{{ book.id }}" class="btn btn-danger btn-block"> Delete
+                                    Book </a>
+                            </div>
+
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-
     </div>
+
+</div>
 
 
 {% endblock content %}

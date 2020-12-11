@@ -89,42 +89,12 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 
 
 <div id="">
-    {#    <header id="header">#}
-    {#                <div id="logo">#}
-    {#                    <img src="{% static 'logo.png' %}" width="150" height="150" alt=""/>#}
-    {#                    <span id="top-menu" style="float: right;">#}
-    {#                        {% if user.is_authenticated %}#}
-    {#                            {{ user.username }}#}
-    {#                            <a href="{% url 'logout' %}?next=/"> Logout </a>#}
-    {#                        {% else %}#}
-    {#                            Login#}
-    {#                            <a href="{% url 'login' %}?next=/"> Login </a>#}
-    {#                        {% endif %}#}
-    {#                    </span>#}
-    {#                </div>#}
-    {#        <div id="topbanner">#}
-    {#            <img src="{% static 'topbanner.jpg' %}" width="800" height="200" alt=""/>#}
-    {#        </div>#}
-    {#    </header>#}
     <section id="">
         {% block content %}
             Hello
         {% endblock content %}
     </section>
-    {#    <aside id="leftsidebar">#}
-    {#        <nav id="nav">#}
-    {#            <ul>#}
-    {#                {% block sidenav %}#}
-    {#                    <li>Menu 1</li>#}
-    {#                    <li>Menu 2</li>#}
-    {#                    <li>Menu 3</li>#}
-    {#                {% endblock sidenav %}#}
-    {#            </ul>#}
-    {#        </nav>#}
-    {#    </aside>#}
 
-
-    {#    <footer class="" id="footer"> CS3337 Django Web System</footer>#}
 </div>
 <footer class="container-fluid fixed-bottom my-auto py-auto align-text-bottom align-bottom" id="footer">
     <p>&copy; CS3337 Django Web System</p>
@@ -175,8 +145,8 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
             var book_quantity = cart[x][0];
             var book_id = cart[x][3];
             cartString += `<a href="/book_detail/${book_id}" class="list-group-item list-group-item-action lead justify-content-between">`;
-            {#cartString += cartIndex;#}
-            {#cartString += ": ";#}
+            {# cartString += cartIndex; #}
+            {# cartString += ": "; #}
             cartString += book_name + '</br>Qty:  <span class="badge badge-dark badge-pill py-auto">' + book_quantity + "</span></br></a>";
             cartIndex += 1;
         }
@@ -194,12 +164,6 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById("cart-count").innerHTML = Object.keys(cart).length;
         console.log(Object.keys(cart).length);
-        {#var books_in_cart = [];#}
-        {#for (var index in cart) {#}
-        {#    var book_id = cart[index][3];#}
-        {#    books_in_cart.push(book_id);#}
-        {# } #}
-        {#Document.localStorage('booksInCart', books_in_cart);#}
 
     });
 

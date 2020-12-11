@@ -1,18 +1,23 @@
 {% load filter_tag %}
-<div  class = "pagination justify-content-center" align="center">
-    <div class ="row">
+<div class="pagination justify-content-center" align="center">
+    <div class="row">
 
         {%if books.has_previous %}
-            <a class="btn btn-outline-dark lead" href="{% replace_url 1 'page' request.GET.urlencode%}" role="button"> First</a>
-            <a class ="btn btn-inverse lead" href="{%replace_url books.previous_page_number 'page' request.GET.urlencode%}"> . . . </a>
+        <a class="btn btn-outline-dark lead" href="{% replace_url 1 'page' request.GET.urlencode%}" role="button">
+            First</a>
+        <a class="btn btn-inverse lead" href="{%replace_url books.previous_page_number 'page' request.GET.urlencode%}">
+            . . . </a>
         {% endif %}
 
 
-        <button class ="pgn-btn btn btn-dark mx-auto" style="background-color: #008891; color: #FFFFFF;">{{books.number}}</button>
+        <button class="pgn-btn btn btn-dark mx-auto" style="background-color: #008891; color: #FFFFFF;">
+            {{books.number}}
+        </button>
 
         {% if books.has_next %}
-            <a class ="btn btn-inverse" href="{%replace_url books.next_page_number 'page' request.GET.urlencode%}"> > </a>
-        <a class ="btn btn-outline-dark" href="{%replace_url books.paginator.num_pages 'page' request.GET.urlencode%}" role="button">Last</a>
+        <a class="btn btn-inverse" href="{%replace_url books.next_page_number 'page' request.GET.urlencode%}"> > </a>
+        <a class="btn btn-outline-dark" href="{%replace_url books.paginator.num_pages 'page' request.GET.urlencode%}"
+           role="button">Last</a>
         {% endif %}
 
     </div>
